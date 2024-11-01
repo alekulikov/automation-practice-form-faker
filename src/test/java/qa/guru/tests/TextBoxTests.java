@@ -1,21 +1,20 @@
 package qa.guru.tests;
 
-
 import org.junit.jupiter.api.Test;
 import qa.guru.pages.TextBoxPage;
+import qa.guru.utils.RandomUtils;
 
-import static qa.guru.utils.RandomUtils.*;
-
-public class TextBoxTests extends TestBase {
+class TextBoxTests extends TestBase {
 
     TextBoxPage textBoxPage = new TextBoxPage();
+    public RandomUtils randomUtils = new RandomUtils();
 
     @Test
     void fillFormTest() {
-        var firstName = getRandomFirstName();
-        var email = getRandomEmail();
-        var currentAddress = getRandomAddress();
-        var permanentAddress = getRandomAddress();
+        var firstName = randomUtils.getRandomFirstName();
+        var email = randomUtils.getRandomEmail();
+        var currentAddress = randomUtils.getRandomAddress();
+        var permanentAddress = randomUtils.getRandomAddress();
 
         textBoxPage.openPage()
                 .setName(firstName)

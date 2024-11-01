@@ -2,31 +2,31 @@ package qa.guru.tests;
 
 import org.junit.jupiter.api.Test;
 import qa.guru.pages.PracticeFormPage;
+import qa.guru.utils.RandomUtils;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-import static qa.guru.utils.RandomUtils.*;
-
 class PracticeFormTests extends TestBase {
 
     public PracticeFormPage practiceFormPage = new PracticeFormPage();
+    public RandomUtils randomUtils = new RandomUtils();
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM,yyyy", Locale.ENGLISH);
 
     @Test
     void fullFieldsTest() {
-        var firstName = getRandomFirstName();
-        var lastName = getRandomLastName();
-        var email = getRandomEmail();
-        var currentAddress = getRandomAddress();
-        var phoneNumber = getRandomPhoneNumber(10);
-        var state = getRandomState();
-        var city = getCity(state);
-        var picture = getRandomPicture();
-        var gender = getRandomGender();
-        var birthDate = getRandomBirthDay(18, 100);
-        var subject = getRandomSubject();
-        var hobby = getRandomHobby();
+        var firstName = randomUtils.getRandomFirstName();
+        var lastName = randomUtils.getRandomLastName();
+        var email = randomUtils.getRandomEmail();
+        var currentAddress = randomUtils.getRandomAddress();
+        var phoneNumber = randomUtils.getRandomPhoneNumber(10);
+        var state = randomUtils.getRandomState();
+        var city = randomUtils.getCity(state);
+        var picture = randomUtils.getRandomPicture();
+        var gender = randomUtils.getRandomGender();
+        var birthDate = randomUtils.getRandomBirthDay(18, 100);
+        var subject = randomUtils.getRandomSubject();
+        var hobby = randomUtils.getRandomHobby();
 
         practiceFormPage.openPage()
                 .removeBanners()
@@ -58,12 +58,12 @@ class PracticeFormTests extends TestBase {
     }
 
     @Test
-    public void onlyRequestedFields() {
-        var firstName = getRandomFirstName();
-        var lastName = getRandomLastName();
-        var phoneNumber = getRandomPhoneNumber(10);
-        var gender = getRandomGender();
-        var birthDate = getRandomBirthDay(18, 100);
+    void onlyRequestedFields() {
+        var firstName = randomUtils.getRandomFirstName();
+        var lastName = randomUtils.getRandomLastName();
+        var phoneNumber = randomUtils.getRandomPhoneNumber(10);
+        var gender = randomUtils.getRandomGender();
+        var birthDate = randomUtils.getRandomBirthDay(18, 100);
 
         practiceFormPage.openPage()
                 .setFirstName(firstName)
@@ -88,10 +88,10 @@ class PracticeFormTests extends TestBase {
 
     @Test
     void incorrectPhoneNumberTest() {
-        var firstName = getRandomFirstName();
-        var lastName = getRandomLastName();
-        var gender = getRandomGender();
-        var birthDate = getRandomBirthDay(18, 100);
+        var firstName = randomUtils.getRandomFirstName();
+        var lastName = randomUtils.getRandomLastName();
+        var gender = randomUtils.getRandomGender();
+        var birthDate = randomUtils.getRandomBirthDay(18, 100);
 
         practiceFormPage.openPage()
                 .setFirstName(firstName)

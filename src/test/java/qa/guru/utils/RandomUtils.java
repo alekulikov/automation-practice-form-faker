@@ -9,74 +9,82 @@ import java.util.Map;
 
 public class RandomUtils {
 
-    private static final Faker FAKER = new Faker(Locale.ENGLISH);
-    private static final String[] GENDERS = {"Male", "Female", "Other"};
-    private static final String[] STATES = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
-    private static final Map<String, String[]> CITIES_BY_STATE = Map.of(
+    private final Faker faker;
+    private final String[] genders = {"Male", "Female", "Other"};
+    private static final String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+    private static final Map<String, String[]> citiesByState = Map.of(
             "NCR", new String[]{"Delhi", "Gurgaon", "Noida"},
             "Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"},
             "Haryana", new String[]{"Karnal", "Panipat"},
             "Rajasthan", new String[]{"Jaipur", "Jaiselmer"}
     );
-    private static final String[] SUBJECTS = {"English", "Chemistry", "Computer Science",
+    private static final String[] subjects = {"English", "Chemistry", "Computer Science",
             "Commerce", "Economics", "Social Studies", "Arts", "History",
             "Maths", "Accounting", "Physics", "Biology", "Hindi", "Civics"};
-    private static final String[] HOBBIES = {"Sports", "Reading", "Music"};
-    private static final String[] PICTURES = {"img.png"};
+    private static final String[] hobbies = {"Sports", "Reading", "Music"};
+    private static final String[] pictures = {"img.png"};
 
-    public static String getRandomFirstName() {
-        return FAKER.name().firstName();
+    public RandomUtils() {
+        this(Locale.ENGLISH);
     }
 
-    public static String getRandomLastName() {
-        return FAKER.name().lastName();
+    public RandomUtils(Locale locale) {
+        faker = new Faker(locale);
     }
 
-    public static String getRandomGender() {
-        return FAKER.options().option(GENDERS);
+    public String getRandomFirstName() {
+        return faker.name().firstName();
     }
 
-    public static LocalDate getRandomBirthDay(int minAge, int maxAge) {
-        var birthDay = FAKER.date().birthday(minAge, maxAge);
+    public String getRandomLastName() {
+        return faker.name().lastName();
+    }
+
+    public String getRandomGender() {
+        return faker.options().option(genders);
+    }
+
+    public LocalDate getRandomBirthDay(int minAge, int maxAge) {
+        var birthDay = faker.date().birthday(minAge, maxAge);
 
         return LocalDate.ofInstant(birthDay.toInstant(), ZoneId.systemDefault());
     }
 
-    public static String getRandomPhoneNumber(int length) {
-        return FAKER.phoneNumber().subscriberNumber(length);
+    public String getRandomPhoneNumber(int length) {
+        return faker.phoneNumber().subscriberNumber(length);
     }
 
-    public static String getRandomEmail() {
-        return FAKER.internet().emailAddress();
+    public String getRandomEmail() {
+        return faker.internet().emailAddress();
     }
 
-    public static String getRandomAddress() {
+    public String getRandomAddress() {
         return String.format("%s, %s, %s",
-                FAKER.address().streetAddressNumber(),
-                FAKER.address().city(),
-                FAKER.address().country());
+                faker.address().streetAddressNumber(),
+                faker.address().city(),
+                faker.address().country());
     }
 
-    public static String getRandomState() {
-        return FAKER.options().option(STATES);
+    public String getRandomState() {
+        return faker.options().option(states);
     }
 
-    public static String getCity(String state) {
-        var cities = CITIES_BY_STATE.get(state);
+    public String getCity(String state) {
+        var cities = citiesByState.get(state);
 
-        return FAKER.options().option(cities);
+        return faker.options().option(cities);
     }
 
-    public static String getRandomSubject() {
-        return FAKER.options().option(SUBJECTS);
+    public String getRandomSubject() {
+        return faker.options().option(subjects);
     }
 
-    public static String getRandomHobby() {
-        return FAKER.options().option(HOBBIES);
+    public String getRandomHobby() {
+        return faker.options().option(hobbies);
     }
 
-    public static String getRandomPicture() {
-        return FAKER.options().option(PICTURES);
+    public String getRandomPicture() {
+        return faker.options().option(pictures);
     }
 
 }
