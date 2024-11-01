@@ -11,18 +11,18 @@ public class RandomUtils {
 
     private final Faker faker;
     private final String[] genders = {"Male", "Female", "Other"};
-    private static final String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
-    private static final Map<String, String[]> citiesByState = Map.of(
+    private final String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+    private final Map<String, String[]> citiesByState = Map.of(
             "NCR", new String[]{"Delhi", "Gurgaon", "Noida"},
             "Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"},
             "Haryana", new String[]{"Karnal", "Panipat"},
             "Rajasthan", new String[]{"Jaipur", "Jaiselmer"}
     );
-    private static final String[] subjects = {"English", "Chemistry", "Computer Science",
+    private final String[] subjects = {"English", "Chemistry", "Computer Science",
             "Commerce", "Economics", "Social Studies", "Arts", "History",
             "Maths", "Accounting", "Physics", "Biology", "Hindi", "Civics"};
-    private static final String[] hobbies = {"Sports", "Reading", "Music"};
-    private static final String[] pictures = {"img.png"};
+    private final String[] hobbies = {"Sports", "Reading", "Music"};
+    private final String[] pictures = {"img.png"};
 
     public RandomUtils() {
         this(Locale.ENGLISH);
